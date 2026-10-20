@@ -226,45 +226,96 @@ class TelaDashboard extends StatelessWidget {
               clipBehavior: Clip.none,
               children: [
                 // TODO [Desafio 6]: Substituir o Container simples por um Card do Material com elevation: 4
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
+		  Card(
+                  elevation: 4,
+                  color: Colors.grey.shade100,
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.grey.shade300),
+                    side: BorderSide(
+                      color: Colors.grey.shade300,
+                    ),
                   ),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.star, size: 48, color: Colors.amber),
-                      const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text('Gavião-Real', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                          Text('Avistado no Parque Central', style: TextStyle(color: Colors.grey)),
-                        ],
-                      ),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          size: 48,
+                          color: Colors.amber,
+                        ),
+                        const SizedBox(width: 16),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Gavião-Real',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'Avistado no Parque Central',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
+
                 Positioned(
                   top: -8,
                   right: -8,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Text(
                       'Raro',
-                      style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
-                // TODO [Desafio 5]: Adicionar segundo Positioned no canto inferior esquerdo:
+                 // TODO [Desafio 5]: Adicionar segundo Positioned no canto inferior esquerdo:
                 // Positioned(bottom: -8, left: -8, child: Container(color: Colors.green, child: Text('Confirmado')))
+                 Positioned(
+                  bottom: -8,
+                  left: -8,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Text(
+                      'Confirmado',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
 
@@ -276,12 +327,64 @@ class TelaDashboard extends StatelessWidget {
             // texto e botão/ícone com MainAxisAlignment.spaceBetween.
             // ===================================================================
             // TODO [Desafio 3]: Implementar a seção "Últimos Registros" aqui
+		Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.teal.shade50,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Icon(
+                    Icons.list,
+                    color: Colors.teal,
+                  ),
+                  Text(
+                    'Últimos Registros',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward,
+                    color: Colors.teal,
+                  ),
+                ],
+              ),
+            ),
 
+            const SizedBox(height: 24.0),
             // ===================================================================
             // 📍 DESAFIO 4 (1,5 ponto):
             // Demonstrar/comprovar a ocorrência e correção de um erro de overflow
             // (RenderFlex overflow) via prints ou bloco comentado.
             // ===================================================================
+
+            // Exemplo de erro de overflow:
+            // Row(
+            //   children: [
+            //     Icon(Icons.info),
+            //     Text('Este texto muito grande pode ultrapassar o limite da tela e causar um RenderFlex overflow quando não há espaço suficiente.'),
+            //   ],
+            // ),
+
+            // Correção do overflow usando Expanded:
+            Row(
+              children: const [
+                Icon(
+                  Icons.info,
+                  color: Colors.teal,
+                ),
+                SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    'Erro de overflow corrigido utilizando Expanded.',
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
